@@ -5,7 +5,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.get("/api/goals", (req, res) => {
-  res.json({ message: "Get goals" });
+  res.status(200).json({ message: "Get goals" });
 });
 
 app.listen(port, () => console.log(`server started on port ${port}`));
