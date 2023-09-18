@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/api/goals", (req, res) => {
-  res.status(200).json({ message: "Get goalss" });
+  res.status(200).json({ message: "Get goals" });
 });
 
 // app.use("/api/goals", require("./routes/goalRoutes"));
