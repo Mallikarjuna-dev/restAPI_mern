@@ -6,10 +6,9 @@ const app = express();
 app.use(express.json());
 
 app.get("/api/goals", (req, res) => {
-  res.status(200).json({ message: "Get goals" });
+  res.status(200).json({ message: "Get goals all" });
 });
 
 // app.use("/api/goals", require("./routes/goalRoutes"));
 
-app.listen(port, () => console.log(`server started on port ${port}`));
-clearInterval
+app.listen(port, () => console.log(`server started on port ${port}`))
