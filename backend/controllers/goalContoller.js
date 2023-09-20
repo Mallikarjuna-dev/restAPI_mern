@@ -35,7 +35,14 @@ const updateGoal = asyncHandler(async (req, res) => {
 });
 
 const deleteGoal = asyncHandler(async (req, res) => {
-  const goal = await Goal.findByIdAndDelete(req.params.id);
+  const goal = await Goal.findById(req.params.id);
+
+  if (!goal) {
+    res.status(400);
+    throw new Error("goal not found");
+  }
+  
+  await Goal.findByIdAndDelete(req.params.id);
   res.status(200).json(goal);
 });
 
