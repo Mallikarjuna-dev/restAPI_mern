@@ -1,24 +1,24 @@
 const asyncHandler = require("express-async-handler");
 const Goal = require("../models/goalModel");
 
+// Read request
 const getGoals = asyncHandler(async (req, res) => {
   const goals = await Goal.find();
   res.status(200).json(goals);
 });
 
+// Create request
 const postGoal = asyncHandler(async (req, res) => {
   if (!req.body.text) {
     res.status(400);
     throw new Error("please add a text fiels");
   }
 
-  const goal = await Goal.create({
-    text: req.body.text,
-  });
-
+  const goal = await Goal.create({ text: req.body.text });
   res.status(200).json(goal);
 });
 
+// Update request
 const updateGoal = asyncHandler(async (req, res) => {
   const goal = await Goal.findById(req.params.id);
 
@@ -34,6 +34,7 @@ const updateGoal = asyncHandler(async (req, res) => {
   res.status(200).json(newGoal);
 });
 
+// Delete request
 const deleteGoal = asyncHandler(async (req, res) => {
   const goal = await Goal.findById(req.params.id);
 
@@ -41,7 +42,7 @@ const deleteGoal = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("goal not found");
   }
-  
+
   await Goal.findByIdAndDelete(req.params.id);
   res.status(200).json(goal);
 });
