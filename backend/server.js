@@ -5,6 +5,9 @@ require("colors");
 const connectDB = require("./config/db");
 const port = process.env.PORT || 5000;
 
+// const { makeSand1 } = require('./makeSand1')
+// makeSand1()
+
 connectDB();
 
 const app = express();
