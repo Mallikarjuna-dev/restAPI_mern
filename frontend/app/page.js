@@ -1,3 +1,5 @@
+"use client";
+
 import Dashboard from '@/Components/Dashboard'
 import Header from '@/Components/Header'
 import Image from 'next/image'

@@ -16,8 +16,8 @@ const Register = () => {
   const { name, email, password, password2 } = formData;
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
     }));
   };
@@ -31,10 +31,10 @@ const Register = () => {
       <Header />
       <div className="container">
         <section className="heading">
-          <h1 className="flex gap-2 justify-center items-baseline">
+          <div className="flex gap-2 justify-center items-baseline">
             <FaUser className="text-2xl" />
             <h1>Register</h1>
-          </h1>
+          </div>
           <p>Please create an account</p>
         </section>
 
@@ -84,9 +84,9 @@ const Register = () => {
                 onChange={onChange}
               />
             </div>
-            <div className="form-control">
+            <div className="form-group">
               <button type="submit" className="btn btn-block">
-                Submit
+                Register
               </button>
             </div>
           </form>
