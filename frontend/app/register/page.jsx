@@ -4,6 +4,10 @@ import Header from "@/Components/Header";
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "@/redux/features/auth/authSlice";
 
 const Register = () => {
   const [formData, setFormData] = useState({
