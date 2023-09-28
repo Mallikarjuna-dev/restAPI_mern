@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { Suspense, useEffect, useMemo } from "react";
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { logout, reset } from "@/redux/features/auth/authSlice";
 
 const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  // const memoizedUser = useMemo(() => user, [user]);
 
   const onLogout = () => {
     dispatch(logout());
@@ -18,12 +20,15 @@ const Header = () => {
     router.push("/");
   };
 
+  // useEffect(() => {}, []);
+
   return (
     <header className="header flex">
       <div className="logo">
         <Link href={"/"}>GoalSetter</Link>
       </div>
       <ul>
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
         {user ? (
           <li>
             <button className="btn" onClick={onLogout}>
@@ -47,6 +52,7 @@ const Header = () => {
             </li>
           </>
         )}
+        {/* </Suspense> */}
       </ul>
     </header>
   );
