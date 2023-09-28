@@ -2,15 +2,15 @@ const express = require("express");
 const { errorHandler } = require("./midleware/errorMiddleware");
 require("dotenv").config();
 require("colors");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const port = process.env.PORT || 5000;
-
-// const { makeSand1 } = require('./makeSand1')
-// makeSand1()
 
 connectDB();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
