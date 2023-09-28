@@ -5,19 +5,28 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "@/redux/features/auth/authSlice";
+import Spinner from "@/Components/Spinner";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
     password2: "",
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, phone, password, password2 } = formData;
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, IsError, message } = useSelector(
+    (state) => state.auth
+  );
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -28,7 +37,36 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (password !== password2) {
+      toast.error("Passwords do not match!");
+    } else {
+      const userData = {
+        name,
+        email,
+        phone,
+        password,
+      };
+
+      dispatch(register(userData));
+    }
   };
+
+  useEffect(() => {
+    if (IsError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      router.push("/");
+    }
+
+    dispatch(reset());
+  }, [user, isSuccess, IsError, message, router, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -63,6 +101,17 @@ const Register = () => {
                 name="email"
                 value={email}
                 placeholder="Enter your email"
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="phone"
+                id="phone"
+                className="form-control"
+                name="phone"
+                value={phone}
+                placeholder="Enter your mobile number"
                 onChange={onChange}
               />
             </div>
