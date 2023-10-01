@@ -44,6 +44,18 @@ const Dashboard = () => {
       </section>
 
       <GoalForm />
+
+      <section className="content">
+        {goals.length > 0 ? (
+          <div className="goals">
+            {goals.map((goal) => (
+              <goalItem ></goalItem>
+            ))}
+          </div>
+        ) : (
+          <h3>You have not set any goals yet!</h3>
+        )}
+      </section>
     </>
   );
 };
