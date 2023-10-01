@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import GoalForm from "./GoalForm";
 import Spinner from "./Spinner";
 import { getGoals, reset } from "@/redux/features/goals/goalSlice";
+import GoalItem from "./GoalItem";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -45,11 +46,11 @@ const Dashboard = () => {
 
       <GoalForm />
 
-      <section className="content">
+      <section className="">
         {goals.length > 0 ? (
           <div className="goals">
             {goals.map((goal) => (
-              <goalItem ></goalItem>
+              <GoalItem key={goal._id} goal={goal} />
             ))}
           </div>
         ) : (
