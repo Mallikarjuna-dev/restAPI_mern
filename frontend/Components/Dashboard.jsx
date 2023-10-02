@@ -32,7 +32,7 @@ const Dashboard = () => {
     return () => {
       dispatch(reset());
     };
-  }, [user, router, isError, message, dispatch]);
+  }, [user, router, isError, dispatch]);
 
   if (isLoading) {
     return <Spinner />;
