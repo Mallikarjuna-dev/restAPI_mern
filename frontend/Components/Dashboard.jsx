@@ -12,6 +12,7 @@ import GoalItem from "./GoalItem";
 const Dashboard = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const { user } = useSelector((state) => state.auth);
   const { goals, isLoading, isError, message } = useSelector(
     (state) => state.goals
@@ -47,6 +48,7 @@ const Dashboard = () => {
       <GoalForm />
 
       <section className="">
+        <div className="font-semibold text-xl">Your goals</div>
         {goals.length > 0 ? (
           <div className="goals">
             {goals.map((goal) => (
