@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import goalService from "./goalService";
-import { toast } from "react-toastify";
 
 const initialState = {
   goals: [],
@@ -25,7 +24,6 @@ export const createGoal = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -45,7 +43,6 @@ export const getGoals = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -65,7 +62,6 @@ export const deleteGoal = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }

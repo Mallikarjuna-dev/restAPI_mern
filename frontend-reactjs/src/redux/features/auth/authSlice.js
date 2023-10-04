@@ -1,16 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
-import { toast } from "react-toastify";
 
 // Get user from localStorage
-// const user = JSON.parse(window.localStorage.getItem("user"));
+const user = JSON.parse(window.localStorage.getItem("user"));
 // const user =
 //   typeof window !== "undefined"
 //     ? JSON.parse(localStorage.getItem("user"))
 //     : null;
 
 const initialState = {
-  user: typeof window !== "undefined" ? localStorage.getItem("user") : null,
+  user: user ? user : null,
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -31,7 +30,6 @@ export const register = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }

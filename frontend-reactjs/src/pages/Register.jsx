@@ -24,6 +24,18 @@ const Register = () => {
     (state) => state.auth
   );
 
+  useEffect(() => {
+    if (IsError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isSuccess, IsError, message, navigate, dispatch]);
+
   const onChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -47,18 +59,6 @@ const Register = () => {
       dispatch(register(userData));
     }
   };
-
-  useEffect(() => {
-    if (IsError) {
-      toast.error(message);
-    }
-
-    if (isSuccess || user) {
-      navigate("/");
-    }
-
-    dispatch(reset());
-  }, [user, isSuccess, IsError, message, navigate, dispatch]);
 
   if (isLoading) {
     return <Spinner />;
