@@ -1,21 +1,19 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import { FaUser } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../redux/features/auth/authSlice";
+import { login, reset } from "../redux/features/auth/authSlice";
 import Spinner from "../components/Spinner";
 
-const Register = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    phone: "",
     password: "",
-    password2: "",
   });
 
-  const { name, email, phone, password, password2 } = formData;
+  const { email, password } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,18 +32,12 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== password2) {
-      toast.error("Passwords do not match!");
-    } else {
-      const userData = {
-        name,
-        email,
-        phone,
-        password,
-      };
+    const userData = {
+      email,
+      password,
+    };
 
-      dispatch(register(userData));
-    }
+    dispatch(login(userData));
   };
 
   useEffect(() => {
@@ -68,33 +60,22 @@ const Register = () => {
     <>
       {/* <div className="container"> */}
       {/* <section className="heading">
-          <div className="">
-            <FaUser className="text-xl" />
-            <h1>Register</h1>
-          </div>
-          <p>Please create an account</p>
-        </section> */}
+        <h2>
+          <FaSignInAlt />
+          Login
+        </h2>
+        <p>Log-on to your account</p>
+      </section> */}
 
       <section className="heading">
         <h3>
-          <FaUser className="text-sm" /> Register
+          <FaSignInAlt /> Login
         </h3>
-        <p>Please create an account</p>
+        <p>Login and start setting goals</p>
       </section>
 
       <section className="form">
         <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              id="name"
-              className="form-control"
-              name="name"
-              value={name}
-              placeholder="Enter your name"
-              onChange={onChange}
-            />
-          </div>
           <div className="form-group">
             <input
               type="email"
@@ -103,17 +84,6 @@ const Register = () => {
               name="email"
               value={email}
               placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="phone"
-              id="phone"
-              className="form-control"
-              name="phone"
-              value={phone}
-              placeholder="Enter your mobile number"
               onChange={onChange}
             />
           </div>
@@ -129,19 +99,8 @@ const Register = () => {
             />
           </div>
           <div className="form-group">
-            <input
-              type="password"
-              id="password2"
-              className="form-control"
-              name="password2"
-              value={password2}
-              placeholder="Confirm password"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
             <button type="submit" className="btn btn-block">
-              Register
+              Login
             </button>
           </div>
         </form>
@@ -151,4 +110,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
