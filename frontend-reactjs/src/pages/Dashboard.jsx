@@ -19,7 +19,6 @@ const Dashboard = () => {
     if (isError) {
       console.log(message);
     }
-
     if (!user) {
       navigate("/login");
     }
@@ -29,7 +28,7 @@ const Dashboard = () => {
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;

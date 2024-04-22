@@ -44,12 +44,17 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const userData = {
-      email,
-      password,
-    };
+    if (!email || !password) {
+      toast.error("Enter all the information!");
+    } else {
+      const userData = {
+        email,
+        password,
+      };
 
-    dispatch(login(userData));
+      dispatch(login(userData));
+      toast.success("User logged in successfully!");
+    }
   };
 
   if (isLoading) {

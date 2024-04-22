@@ -45,7 +45,9 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    if (!name || !email || !phone || !password || !password2) {
+      toast.error("please fill all required fields!");
+    }
     if (password !== password2) {
       toast.error("Passwords do not match!");
     } else {
@@ -57,6 +59,7 @@ const Register = () => {
       };
 
       dispatch(register(userData));
+      toast.success("User registered successfully!");
     }
   };
 
