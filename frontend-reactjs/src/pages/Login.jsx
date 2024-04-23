@@ -53,7 +53,6 @@ const Login = () => {
       };
 
       dispatch(login(userData));
-      toast.success("User logged in successfully!");
     }
   };
 

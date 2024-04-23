@@ -59,14 +59,12 @@ const Register = () => {
       };
 
       dispatch(register(userData));
-      toast.success("User registered successfully!");
     }
   };
 
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <>
       {/* <div className="container"> */}
@@ -74,6 +72,7 @@ const Register = () => {
           <div className="">
             <FaUser className="text-xl" />
             <h1>Register</h1>
+
           </div>
           <p>Please create an account</p>
         </section> */}
