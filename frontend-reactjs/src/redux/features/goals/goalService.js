@@ -1,7 +1,8 @@
 import axios from "axios";
+import { BaseURL } from "../../../Url";
 
 // const API_URL = "http://localhost:5000/api/goals/";
-const API_URL = "/api/goals/";
+const API_URL = `${BaseURL}/api/goals/`;
 
 // Create new Goal
 const createGoal = async (goalData, token) => {
