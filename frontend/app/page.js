@@ -20,8 +20,8 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <Dashboard />
+      {/* <Header /> */}
+      {/* <Dashboard /> */}
       {/* <>
         <section className="heading">
           <h1>Welcome {user && user.name}</h1>
